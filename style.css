@@ -1,0 +1,702 @@
+/* =============================================
+   दिल की बात — style.css
+   Mobile-first responsive design
+   Requirements: 9.1, 9.2, 9.3, 9.4
+   ============================================= */
+
+/* --- CSS Variables --- */
+:root {
+    --color-bg: #E8F4FD;
+    --color-white: #FFFFFF;
+    --color-light-brown: #F5F0EB;
+    --color-record: #E53935;
+    --color-record-hover: #C62828;
+    --color-primary: #1976D2;
+    --color-primary-hover: #1565C0;
+    --color-secondary: #546E7A;
+    --color-secondary-hover: #37474F;
+    --color-text: #212121;
+    --color-text-muted: #757575;
+    --color-border: #CFD8DC;
+    --color-success: #2E7D32;
+    --color-error: #C62828;
+    --color-toast-success-bg: #E8F5E9;
+    --color-toast-error-bg: #FFEBEE;
+    --color-toast-info-bg: #E3F2FD;
+    --font-main: 'Noto Sans Devanagari', sans-serif;
+    --touch-target: 44px;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.14);
+    --transition: 0.2s ease;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    line-height: 1.6;
+    /* Base: 320px wide */
+    padding: 0;
+}
+
+/* --- Screen Toggle (Requirements 9.1) --- */
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- App Header --- */
+.app-header {
+    text-align: center;
+    padding: 32px 16px 24px;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.app-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+}
+
+.app-tagline {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-top: 6px;
+}
+
+/* --- Buttons (Requirements 9.4 — min 44x44px touch targets) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
+    padding: 10px 20px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color var(--transition), transform var(--transition), opacity var(--transition);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Primary button */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+}
+
+/* Secondary button */
+.btn-secondary {
+    background-color: var(--color-light-brown);
+    color: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    width: 100%;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #EDE8E3;
+}
+
+/* Back button */
+.btn-back {
+    background-color: transparent;
+    color: var(--color-primary);
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    width: auto;
+}
+
+.btn-back:hover:not(:disabled) {
+    background-color: rgba(25, 118, 210, 0.08);
+}
+
+/* Record button — red, prominent (Requirements 9.2) */
+.btn-record {
+    background-color: var(--color-record);
+    color: var(--color-white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.35);
+    min-height: 52px;
+}
+
+.btn-record:hover:not(:disabled) {
+    background-color: var(--color-record-hover);
+    box-shadow: 0 6px 16px rgba(229, 57, 53, 0.45);
+}
+
+/* Pause button */
+.btn-pause {
+    background-color: #FF8F00;
+    color: var(--color-white);
+    border-radius: 50px;
+    min-height: 48px;
+}
+
+.btn-pause:hover:not(:disabled) {
+    background-color: #E65100;
+}
+
+/* Stop button */
+.btn-stop {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: 50px;
+    min-height: 48px;
+}
+
+.btn-stop:hover:not(:disabled) {
+    background-color: var(--color-secondary-hover);
+}
+
+/* Upload button */
+.btn-upload {
+    background-color: var(--color-success);
+    color: var(--color-white);
+}
+
+.btn-upload:hover:not(:disabled) {
+    background-color: #1B5E20;
+}
+
+/* Record-open button on home screen */
+.btn-record-open {
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 24px;
+    background-color: var(--color-record);
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.30);
+}
+
+.btn-record-open:hover:not(:disabled) {
+    background-color: var(--color-record-hover);
+}
+
+/* --- Home Actions --- */
+.home-actions {
+    margin-bottom: 24px;
+}
+
+/* --- Story List Section --- */
+.story-list-section {
+    flex: 1;
+    margin-bottom: 16px;
+}
+
+/* Story Card (injected by JS) */
+.story-card {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--color-primary);
+    transition: box-shadow var(--transition);
+}
+
+.story-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.story-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.story-card-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.story-card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.story-card-actions .btn {
+    flex: 1;
+    min-width: 120px;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+}
+
+/* Empty state / error state */
+.story-empty-state,
+.story-error-state {
+    text-align: center;
+    padding: 40px 16px;
+    color: var(--color-text-muted);
+    background: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* --- Refresh Actions --- */
+.refresh-actions {
+    padding-bottom: 24px;
+}
+
+/* --- Screen Header --- */
+.screen-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 8px 0;
+}
+
+.screen-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    flex: 1;
+}
+
+/* --- Timer --- */
+.timer-container {
+    text-align: center;
+    margin: 24px 0;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-record);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+    display: block;
+}
+
+/* --- Recorder Controls --- */
+.recorder-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* --- Preview Container --- */
+.preview-container {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.preview-label {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+}
+
+.preview-player {
+    width: 100%;
+    min-height: var(--touch-target);
+    border-radius: var(--radius-sm);
+    outline: none;
+}
+
+/* --- Title Input --- */
+.title-input-container {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.input-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.story-title-input {
+    width: 100%;
+    min-height: var(--touch-target);
+    padding: 10px 14px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color var(--transition);
+}
+
+.story-title-input:focus {
+    border-color: var(--color-primary);
+    background: var(--color-white);
+}
+
+.story-title-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.char-count {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-top: 6px;
+}
+
+/* --- Upload Actions --- */
+.upload-actions {
+    margin-bottom: 16px;
+}
+
+/* --- Upload Loading --- */
+.upload-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+}
+
+.upload-loading[hidden] {
+    display: none;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Toast Messages --- */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: calc(100% - 32px);
+    max-width: 480px;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+    box-shadow: var(--shadow-md);
+    pointer-events: auto;
+    animation: toast-in 0.3s ease forwards;
+    width: 100%;
+    line-height: 1.5;
+}
+
+.toast.toast-success {
+    background: var(--color-toast-success-bg);
+    color: var(--color-success);
+    border-left: 4px solid var(--color-success);
+}
+
+.toast.toast-error {
+    background: var(--color-toast-error-bg);
+    color: var(--color-error);
+    border-left: 4px solid var(--color-error);
+}
+
+.toast.toast-info {
+    background: var(--color-toast-info-bg);
+    color: var(--color-primary);
+    border-left: 4px solid var(--color-primary);
+}
+
+.toast.toast-hide {
+    animation: toast-out 0.3s ease forwards;
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toast-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
+
+/* =============================================
+   Responsive Breakpoints (Requirements 9.1)
+   Mobile-first: base = 320px
+   ============================================= */
+
+/* --- 480px and up --- */
+@media (min-width: 480px) {
+    .screen {
+        padding: 20px;
+    }
+
+    .app-title {
+        font-size: 2.4rem;
+    }
+
+    .timer-display {
+        font-size: 3.5rem;
+    }
+
+    .recorder-controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .recorder-controls .btn {
+        flex: 1;
+        min-width: 130px;
+    }
+
+    .story-card-actions .btn {
+        flex: none;
+    }
+}
+
+/* --- 768px and up (tablet) --- */
+@media (min-width: 768px) {
+    body {
+        padding: 24px 16px;
+    }
+
+    .screen {
+        padding: 28px 32px;
+        border-radius: var(--radius);
+        background: var(--color-white);
+        box-shadow: var(--shadow-md);
+        min-height: auto;
+    }
+
+    .app-header {
+        padding: 40px 24px 32px;
+    }
+
+    .app-title {
+        font-size: 2.8rem;
+    }
+
+    .app-tagline {
+        font-size: 1.1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: auto;
+        min-width: 200px;
+    }
+
+    .home-actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .refresh-actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .refresh-actions .btn-secondary {
+        width: auto;
+        min-width: 220px;
+    }
+
+    .story-card {
+        padding: 20px;
+    }
+
+    .story-card-title {
+        font-size: 1.1rem;
+    }
+
+    .timer-display {
+        font-size: 4rem;
+    }
+
+    .recorder-controls {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .recorder-controls .btn {
+        flex: none;
+        min-width: 150px;
+    }
+
+    .upload-actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .upload-actions .btn-primary {
+        width: auto;
+        min-width: 240px;
+    }
+}
+
+/* --- 1024px and up (desktop) --- */
+@media (min-width: 1024px) {
+    body {
+        padding: 40px 24px;
+    }
+
+    .screen {
+        max-width: 680px;
+        padding: 36px 48px;
+    }
+
+    .app-title {
+        font-size: 3rem;
+    }
+
+    .story-card {
+        padding: 24px;
+    }
+
+    .timer-container {
+        padding: 32px;
+    }
+
+    .timer-display {
+        font-size: 4.5rem;
+    }
+}
+
+/* --- 1440px and up (wide desktop) --- */
+@media (min-width: 1440px) {
+    .screen {
+        max-width: 720px;
+    }
+}
+
+/* --- Focus styles for keyboard accessibility --- */
+.btn:focus-visible,
+.story-title-input:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

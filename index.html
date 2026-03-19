@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>दिल की बात</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active" role="main">
+        <header class="app-header">
+            <h1 class="app-title">दिल की बात</h1>
+            <p class="app-tagline">अपनी भावनाएँ, अपनी आवाज़ में</p>
+        </header>
+
+        <div class="home-actions">
+            <button id="btn-record-open" class="btn btn-primary btn-record-open" aria-label="अपनी कहानी रिकॉर्ड करें">
+                🎤 अपनी कहानी रिकॉर्ड करें
+            </button>
+        </div>
+
+        <section class="story-list-section" aria-label="कहानियों की सूची">
+            <div id="story-list" role="list" aria-live="polite" aria-label="कहानियाँ">
+                <!-- Story cards injected by JS -->
+            </div>
+        </section>
+
+        <div class="refresh-actions">
+            <button id="btn-refresh" class="btn btn-secondary" aria-label="नई कहानियाँ देखें">
+                🔄 नई कहानियाँ देखें
+            </button>
+        </div>
+    </div>
+
+    <!-- Recorder Screen -->
+    <div id="recorder-screen" class="screen" role="main" aria-label="रिकॉर्डिंग स्क्रीन">
+        <div class="screen-header">
+            <button id="btn-recorder-back" class="btn btn-back" aria-label="होम पेज पर वापस जाएँ">
+                ← वापस
+            </button>
+            <h2 class="screen-title">अपनी कहानी रिकॉर्ड करें</h2>
+        </div>
+
+        <div class="timer-container" aria-live="polite" aria-atomic="true">
+            <span id="timer-display" class="timer-display" aria-label="रिकॉर्डिंग समय">00:00</span>
+        </div>
+
+        <div class="recorder-controls" role="group" aria-label="रिकॉर्डिंग नियंत्रण">
+            <button id="btn-record-start" class="btn btn-record" aria-label="रिकॉर्डिंग शुरू करें">
+                🔴 रिकॉर्ड करें
+            </button>
+            <button id="btn-record-pause" class="btn btn-pause" aria-label="रिकॉर्डिंग रोकें" disabled>
+                ⏸ रोकें
+            </button>
+            <button id="btn-record-stop" class="btn btn-stop" aria-label="रिकॉर्डिंग बंद करें" disabled>
+                ⏹ बंद करें
+            </button>
+        </div>
+    </div>
+
+    <!-- Upload Screen -->
+    <div id="upload-screen" class="screen" role="main" aria-label="कहानी साझा करें स्क्रीन">
+        <div class="screen-header">
+            <button id="btn-upload-back" class="btn btn-back" aria-label="रिकॉर्डिंग स्क्रीन पर वापस जाएँ">
+                ← वापस
+            </button>
+            <h2 class="screen-title">कहानी साझा करें</h2>
+        </div>
+
+        <div class="preview-container">
+            <p class="preview-label">अपनी रिकॉर्डिंग सुनें:</p>
+            <audio id="preview-player" controls class="preview-player"
+                aria-label="रिकॉर्ड की गई कहानी का पूर्वावलोकन"></audio>
+        </div>
+
+        <div class="title-input-container">
+            <label for="story-title" class="input-label">कहानी का शीर्षक</label>
+            <input type="text" id="story-title" class="story-title-input" maxlength="100"
+                placeholder="अपनी कहानी को एक नाम दें..." aria-label="कहानी का शीर्षक, अधिकतम 100 अक्षर"
+                aria-required="true" />
+            <span class="char-count" aria-live="polite" aria-label="शेष अक्षर">0 / 100</span>
+        </div>
+
+        <div class="upload-actions">
+            <button id="btn-upload" class="btn btn-primary btn-upload" aria-label="कहानी GitHub पर साझा करें">
+                📤 कहानी साझा करें
+            </button>
+        </div>
+
+        <div id="upload-loading" class="upload-loading" role="status" aria-live="polite"
+            aria-label="कहानी upload हो रही है" hidden>
+            <span class="loading-spinner" aria-hidden="true"></span>
+            <span>कहानी upload हो रही है...</span>
+        </div>
+    </div>
+
+    <!-- Toast / Message container -->
+    <div id="toast-container" class="toast-container" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="player.js"></script>
+    <script src="recorder.js"></script>
+    <script src="uploader.js"></script>
+    <script src="share.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

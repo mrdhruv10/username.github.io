@@ -1,0 +1,16 @@
+{
+    "name": "dil-ki-baat",
+    "version": "1.0.0",
+    "description": "दिल की बात — एक सामुदायिक ऑडियो कहानी मंच",
+    "type": "module",
+    "scripts": {
+        "test": "vitest --run",
+        "test:watch": "vitest"
+    },
+    "devDependencies": {
+        "vitest": "^1.6.0",
+        "jsdom": "^24.0.0",
+        "@vitest/coverage-v8": "^1.6.0",
+        "fast-check": "^3.19.0"
+    }
+}
